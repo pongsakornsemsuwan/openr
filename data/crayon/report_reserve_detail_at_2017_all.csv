@@ -1,4 +1,4 @@
-order,,invoice_no,date,tel,,,item,sku,,option,amount
+order,,invoice_no,date,tel,,,item,sku,,option,amount,
 1,,INV20170400001,2017-04-07 17:42:12,,,,1,SK-0203-WHITE,,S,1,
 2,,INV20170400002,2017-04-07 17:46:59,,,,1,SK-0222-NAVY,,S,-1,
 2,,INV20170400002,2017-04-07 17:46:59,,,,2,SK-0222-NAVY,,M,1,

@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework import routers
 from popularity import views as PopularityViewSet
 from association import views as AssociationViewSet
+from collaborative.views import Collaborative
 
 router = routers.SimpleRouter()
 router.register(r'^popularity/$', PopularityViewSet.Popularity.as_view(), base_name='popularity')
@@ -30,5 +31,6 @@ urlpatterns = [
     url(r'^api/popularity', PopularityViewSet.Popularity.as_view() ),
     url(r'^api/popularity', PopularityViewSet.Popularity.as_view() ),
     url(r'^api/association/item/(?P<item_cd>[[a-zA-Z0-9_-]+)', AssociationViewSet.Association.as_view() ),
+    url(r'^api/collaborative/item/(?P<item_cd>[[a-zA-Z0-9_-]+)', Collaborative.as_view() )
 ]
 

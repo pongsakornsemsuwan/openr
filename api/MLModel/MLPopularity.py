@@ -44,10 +44,10 @@ class MLPopularity(MLBase):
 	# save
 	#####################
 	def save(self, filepath):
-		self.utilMatrix.to_csv(self.filepath, index=False)
+		self.utilMatrix.to_csv(filepath, index=False)
 
 	#####################
 	# load
 	#####################
 	def load(self, filepath):
-		self.utilMatrix = pd.read_csv(self.filepath)
+		self.utilMatrix = pd.read_csv(filepath)

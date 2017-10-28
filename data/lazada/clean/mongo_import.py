@@ -7,7 +7,8 @@ reviewDF['time'] = pd.to_datetime(reviewDF['time'])
 docList = reviewDF.to_dict('records')
 
 
-URI = "mongodb://172.17.0.1:27017"
+# URI = "mongodb://172.17.0.1:27017"
+URI = "mongodb://127.0.0.1:27017"
 client = pmg.MongoClient()
 
 for doc in docList:

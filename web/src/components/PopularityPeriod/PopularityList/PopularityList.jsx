@@ -18,18 +18,18 @@ class PopularityList extends React.Component {
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>cccc</TableHeaderColumn>
+            <TableHeaderColumn></TableHeaderColumn>
+            <TableHeaderColumn>Item Code</TableHeaderColumn>
+            <TableHeaderColumn>Amount</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
           {this.props.itemList.map((item, index)=>{
             return (
               <TableRow key={index}>
-                <TableRowColumn>1</TableRowColumn>
-                <TableRowColumn>John Smith</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
+                <TableRowColumn>{index+1}</TableRowColumn>
+                <TableRowColumn>{item.sku}</TableRowColumn>
+                <TableRowColumn>{item.amount}</TableRowColumn>
               </TableRow>    
             )
           })}

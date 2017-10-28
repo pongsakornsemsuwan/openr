@@ -22,8 +22,8 @@ class TopBar extends React.Component {
         titleStyle={{fontSize:24}}
         title={
           <div>
-            <Avatar src="/user8-128x128.jpg" />
-            Welcome, {this.props.email}
+            <Avatar src="/user8-128x128.jpg" style={{marginTop:10,marginRight:10}}/>
+            <span style={{fontSize:20,verticalAlign:'top'}}>Welcome, {this.props.email}</span>
           </div>}
         iconElementRight = {
           <IconMenu

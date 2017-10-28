@@ -26,12 +26,12 @@ orderRouter.post('/', async function(req, res, next) {
       console.log(itemList[0])
       console.log(itemList[1])
       // if item is not already exist, creat new item obj
-      let item = await Item.findOne({ itemCd: itemList[i], storeId:req.body.storeId});
+      let item = await Item.findOne({ sku: itemList[i], storeId:req.body.storeId});
       console.log(item);
       // not found
       if(item == null){
         let newItem = new Item();
-        newItem.itemCd = itemList[i];
+        newItem.sku = itemList[i];
         newItem.storeId = store.id
         item = await newItem.save();
       }
@@ -74,20 +74,20 @@ orderRouter.get('/', function(req, res, next) {
 	}
 })
 
-router.post("/upload", function(req, res, next){
-	if (req.files) {
-		console.log(util.inspect(req.files));
-		if (req.files.myFile.size === 0) {
-		            return next(new Error("Hey, first would you select a file?"));
-		}
-		fs.exists(req.files.myFile.path, function(exists) {
-			if(exists) {
-				res.end("Got your file!");
-			} else {
-				res.end("Well, there is no magic for those who don’t believe in it!");
-			}
-		});
-	}
-});
+// router.post("/upload", function(req, res, next){
+// 	if (req.files) {
+// 		console.log(util.inspect(req.files));
+// 		if (req.files.myFile.size === 0) {
+// 		            return next(new Error("Hey, first would you select a file?"));
+// 		}
+// 		fs.exists(req.files.myFile.path, function(exists) {
+// 			if(exists) {
+// 				res.end("Got your file!");
+// 			} else {
+// 				res.end("Well, there is no magic for those who don’t believe in it!");
+// 			}
+// 		});
+// 	}
+// });
 
 module.exports = orderRouter

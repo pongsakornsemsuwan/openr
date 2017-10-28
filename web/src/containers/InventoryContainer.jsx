@@ -7,51 +7,38 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchItems } from '../actions/InventoryAction'
 
 class InventoryContainer extends React.Component {
   constructor(props){
     super(props);
-
-
   }
 
+  async componentDidMount(){
+    fetchItems(this.props.dispatch, this.props.storeId);
+  }
+
+  renderIntenvory(){
+    console.log(this.props.items);
+    return this.props.items.map( item => {
+     return (<TableRow>
+        <TableRowColumn>{item.sku}</TableRowColumn>
+      </TableRow>)
+    })
+  }
   render() {
+    console.log(this.props.items)
     return (
       <Table>
-        <TableHeader>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
+            <TableHeaderColumn>Item Code</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableRowColumn>1</TableRowColumn>
-            <TableRowColumn>John Smith</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>2</TableRowColumn>
-            <TableRowColumn>Randal White</TableRowColumn>
-            <TableRowColumn>Unemployed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>3</TableRowColumn>
-            <TableRowColumn>Stephanie Sanders</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>4</TableRowColumn>
-            <TableRowColumn>Steve Brown</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>5</TableRowColumn>
-            <TableRowColumn>Christopher Nolan</TableRowColumn>
-            <TableRowColumn>Unemployed</TableRowColumn>
-          </TableRow>
+        <TableBody displayRowCheckbox={false}>
+          {this.renderIntenvory()}
         </TableBody>
       </Table>
     )
@@ -59,4 +46,11 @@ class InventoryContainer extends React.Component {
 
 }
 
-export default InventoryContainer;
+function mapStateToProps(state){
+  return {
+    items: state.InventoryReducer.items,
+    storeId: state.SessionReducer.key
+  }
+}
+
+export default connect(mapStateToProps)(InventoryContainer);

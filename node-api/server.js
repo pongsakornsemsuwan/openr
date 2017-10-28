@@ -15,9 +15,15 @@ app.use(
 		extended: true
 	})
 )
-app.use(multer({
-	dest: "./uploads/"
-}));
+
+app.use(function (req, res, next) {	
+	// Website you wish to allow to connect
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+	next();
+});
+// app.use(multer({
+// 	dest: "./uploads/"
+// }));
 
 app.use('/api/stores', storeRouter);
 app.use('/api/orders', orderRouter);

@@ -14,7 +14,6 @@ import Delete from 'material-ui/svg-icons/action/delete';
 import FontIcon from 'material-ui/FontIcon';
 import Subheader from 'material-ui/Subheader';
 
-
 const LeftPane = ({open, match}) => {
   return (
     <Drawer open={open} zDepth={1} containerStyle={{paddingTop:20}}>
@@ -40,12 +39,12 @@ const LeftPane = ({open, match}) => {
           <MenuItem leftIcon={<FontIcon className="material-icons">assessment</FontIcon>}>Analytics</MenuItem>
         </Link> */}
         <Link to={match.url + '/analytics/popularity'} style={{textDecoration:'none'}}>
-          <MenuItem leftIcon={<FontIcon color="#BF616A" className="material-icons">star_rate</FontIcon>}>Popularity Based</MenuItem>
+          <MenuItem leftIcon={<FontIcon color="#BF616A" className="material-icons">star_rate</FontIcon>}>Popular</MenuItem>
         </Link>
         <Link to={match.url + '/analytics/correlation'} style={{textDecoration:'none'}}>
-          <MenuItem leftIcon={<FontIcon color="#D08770" className="material-icons">timeline</FontIcon>}>Correlation Based</MenuItem>
+          <MenuItem leftIcon={<FontIcon color="#D08770" className="material-icons">timeline</FontIcon>}>Bought together</MenuItem>
         </Link>
-        <Link to={match.url + '/analytics/correlation'} style={{textDecoration:'none'}}>
+        <Link to={match.url + '/analytics/collaborative'} style={{textDecoration:'none'}}>
           <MenuItem leftIcon={<FontIcon color="#EBCB8B" className="material-icons">thumb_up</FontIcon>}>Model Collaborative</MenuItem>
         </Link>
       </div>

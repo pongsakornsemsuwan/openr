@@ -30,7 +30,7 @@ const LoginForm = (props) => {
         {/* <TextField name="email" type="text"/> */}
         {/* <TextField name="password" type="password"/> */}
         <div style={{marginBottom:30}}>
-          <Field name="password" component={renderTextField} hintText="Password"/>
+          <Field type="password" name="password" component={renderTextField} hintText="Password"/>
         </div>
 
         <div style={{marginBottom:30}}>

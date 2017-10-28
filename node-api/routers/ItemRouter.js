@@ -1,5 +1,8 @@
 const express = require('express')
 const Item = require('./../models/Item.model')
+const Transaction = require('./../models/Transaction.model')
+const Store = require('./../models/Store.model')
+const ObjectId = require('mongodb').ObjectID;
 
 let itemRouter = express.Router()
 
@@ -18,9 +21,12 @@ itemRouter.post('/', function(req, res, next) {
   }
 });
 
-itemRouter.get('/', function(req, res, next) {
+itemRouter.get('/', async function(req, res, next) {
   let storeId = req.query.key;
-  console.log('asdasda');
+  if(!req.query.key){
+    res.json({error:'key not found'})
+    return;
+  }
   console.log(storeId);
 	try {
 		Item.find({storeId:storeId}).exec(function(err, items) {
@@ -30,7 +36,19 @@ itemRouter.get('/', function(req, res, next) {
 			} else {
 				res.json(items)
 			}
-		})
+    })
+    
+    // Transaction.find({store_id:ObjectId(storeId)}).distinct('sku', function(err, ids) {
+    //   if(err){
+    //     console.log(err)
+    //     res.send(err)
+    //   }else{
+    //     const response = ids.map(id=>{
+    //       return { 'itemCd': id }
+    //     });
+    //     res.json(response);
+    //   }
+    // });
 	} catch (err) {
 		console.log(err)
 	}

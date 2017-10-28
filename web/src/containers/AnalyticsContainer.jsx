@@ -21,7 +21,7 @@ const tilesData = [
   },
   {
     img: 'images/grid-list/burger-827309_640.jpg',
-    title: 'Correlation',
+    title: 'สินค้าที่ซื้อด้วยกัน',
     author: 'pashminu',
   },
   {

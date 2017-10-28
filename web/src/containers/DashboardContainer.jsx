@@ -5,7 +5,10 @@ import InventoryContainer from './InventoryContainer';
 import CustomerContainer from './CustomerContainer';
 import AnalyticsContainer from './AnalyticsContainer';
 import PopularityContainer from './PopularityContainer';
-import CorrelationContainer from './CorrelationContainer';
+import AssociationContainer from './AssociationContainer';
+import AssociationDetailContainer from './AssociationDetailContainer';
+import CollaborativeContainer from './CollaborativeContainer';
+import CollaborativeDetailContainer from './CollaborativeDetailContainer';
 
 import {
   BrowserRouter as Router,
@@ -29,7 +32,10 @@ const DashboardContainer = () => {
               <Route path="/dashboard/order" component={CustomerContainer} />
               <Route exact path="/dashboard/analytics" component={AnalyticsContainer} />
               <Route path="/dashboard/analytics/popularity" component={PopularityContainer} />
-              <Route path="/dashboard/analytics/correlation" component={CorrelationContainer} />
+              <Route exact path="/dashboard/analytics/correlation" component={AssociationContainer} />
+              <Route exact path="/dashboard/analytics/correlation/:sku" component={AssociationDetailContainer} />
+              <Route exact path="/dashboard/analytics/collaborative" component={CollaborativeContainer} />
+              <Route exact path="/dashboard/analytics/collaborative/:sku" component={CollaborativeDetailContainer} />
             </Switch>
           </div>
         </div>

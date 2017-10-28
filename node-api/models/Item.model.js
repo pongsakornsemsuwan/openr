@@ -5,7 +5,9 @@ var Schema = mongoose.Schema
 
 var ItemSchema = new Schema(
 	{
-    itemCd: String,
+    sku: {
+      type: String,
+    },
     storeId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Store'

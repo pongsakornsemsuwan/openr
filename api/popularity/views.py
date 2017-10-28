@@ -14,7 +14,11 @@ class Popularity(APIView):
 
     model = MLPopularity(store_id)
     
-    model.fit('transactions', 'amount')      # recompute model
+    if store_id == '59f373a540e4c1960ce7c927':
+        model.fit('reviews','rating')
+    else:
+        model.fit('transactions', 'amount')      # recompute model
+    
     # model.save(<filename>)                 # save model to file
     # model.load(<filename>)                 # load model from file
 

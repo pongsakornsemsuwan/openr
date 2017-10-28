@@ -15,7 +15,6 @@ from mlxtend.frequent_patterns import association_rules
 
 class Association(APIView):
 
-
   def get(self, request, item_cd, format=None):
     response=[]
     store_id = request.GET.get('key', '')
@@ -47,21 +46,8 @@ class Association(APIView):
       frequent_itemsets = apriori(basket_sets, min_support=0.001, use_colnames=True)
       rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
 
-      # print(rules)
-      print(item_cd)
       for x in range(0, len(rules)):
         if(item_cd in rules['antecedants'].values[x]):
-          response.append( { 'itemCd': next(iter(rules.loc[x]['consequents'])), 'confidence': rules.loc[x]['confidence']})
-      # print(rules['antecedants'].values[1])
-      # print('D-0150-BLACK' in rules['antecedants'].values[1])
-      # print(matched_item);
+          response.append( { 'sku': next(iter(rules.loc[x]['consequents'])), 'confidence': rules.loc[x]['confidence']})
 
-    # return Response(recommend,status=status.HTTP_200_OK);
     return Response(response,status=status.HTTP_200_OK);
-
-  
-
-
-
-    
-

@@ -1,6 +1,7 @@
 from .MLBase import MLBase
 from .DataSource import DataSource
 import pandas as pd
+from sklearn.decomposition import TruncatedSVD
 
 ####################################
 # MLCollaborative class
@@ -18,8 +19,13 @@ class MLCollaborative(MLBase):
 	#####################
 	# fit
 	#####################
-	def fit(self, collection, key):
-		pass
+	def fit(self):
+		reviewDF = DataFrame.getDataFrame('reviewDF', self.storeID)
+		uMatrix = reviewDF.pivot(index='user_fk', columns='sku', values='rating')	# expensive
+		uMatrix.fillna(0, inplace=True)
+		svd = TruncatedSVD(n_components=50)
+		self.utilMatrix = pd.DataFrame(svd.components_, columns=uMatrix.columns)
+		self.corrDF = self.uMatrix.corr()
 
 	#####################
 	# predict

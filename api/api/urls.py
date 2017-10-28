@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
 from popularity import views as PopularityViewSet
+from association import views as AssociationViewSet
 
 router = routers.SimpleRouter()
 router.register(r'^popularity/$', PopularityViewSet.Popularity.as_view(), base_name='popularity')
@@ -24,9 +25,10 @@ router.register(r'^popularity/$', PopularityViewSet.Popularity.as_view(), base_n
 
 urlpatterns = [
     # url(r'^api/popularity', include(router.urls, namespace='api')),
-    url(r'^api/popularity/(?P<store_id>\d+)', PopularityViewSet.Popularity.as_view() ),
+    url(r'^api/popularity/(?P<key>\d+)', PopularityViewSet.Popularity.as_view() ),
     url(r'^api/popularity', PopularityViewSet.Popularity.as_view() ),
     url(r'^api/popularity', PopularityViewSet.Popularity.as_view() ),
     url(r'^api/popularity', PopularityViewSet.Popularity.as_view() ),
+    url(r'^api/association/item/(?P<item_cd>[[a-zA-Z0-9_-]+)', AssociationViewSet.Association.as_view() ),
 ]
 

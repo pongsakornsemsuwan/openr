@@ -14,9 +14,9 @@ class Popularity(APIView):
 
     model = MLPopularity(store_id)
     
-    model.fit()                   # recompute model
-    # model.save(<filename>)      # save model to file
-    # model.load(<filename>)      # load model from file
+    model.fit('transactions', 'amount')      # recompute model
+    # model.save(<filename>)                 # save model to file
+    # model.load(<filename>)                 # load model from file
 
     response = model.predict()
 

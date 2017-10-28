@@ -17,15 +17,15 @@ class MLPopularity(MLBase):
 	#####################
 	# fit
 	#####################
-	def fit(self):
+	def fit(self, collection, key):
 		# retrieve data
-		order_f = DataSource.getDataFrame('transactions', self.storeID)
+		order_f = DataSource.getDataFrame(collection, self.storeID)
 
 		# fit logic
 		order_f.sort_values('sku',ascending=False)
-		rating_count = order_f.groupby('sku')['amount'].sum()
+		rating_count = order_f.groupby('sku')[key].sum()
 		utilMatrix = pd.DataFrame(rating_count)
-		self.utilMatrix = utilMatrix.sort_values('amount',ascending=False)
+		self.utilMatrix = utilMatrix.sort_values(key,ascending=False)
 
 	#####################
 	# predict

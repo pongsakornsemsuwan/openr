@@ -1,0 +1,16 @@
+{ 
+    "_id" : ObjectId("59e1f0dac82daf63d6da4d32"), 
+    "updatedAt" : ISODate("2017-10-14T11:11:22.326+0000"), 
+    "createdAt" : ISODate("2017-10-14T11:11:22.326+0000"), 
+    "name" : "Crayon", 
+    "email" : "crayon@crayon.com", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("59f373a540e4c1960ce7c927"), 
+    "updatedAt" : ISODate("2017-10-27T17:57:57.101+0000"), 
+    "createdAt" : ISODate("2017-10-27T17:57:57.101+0000"), 
+    "name" : "Lazada", 
+    "email" : "lazada@lazada.com", 
+    "__v" : NumberInt(0)
+}

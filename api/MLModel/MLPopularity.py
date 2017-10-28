@@ -23,9 +23,11 @@ class MLPopularity(MLBase):
 
 		# fit logic
 		order_f.sort_values('sku',ascending=False)
-		rating_count = order_f.groupby('sku')[key].sum()
-		utilMatrix = pd.DataFrame(rating_count)
-		self.utilMatrix = utilMatrix.sort_values(key,ascending=False)
+		self.utilMatrix = order_f.groupby('sku')[key] \
+			.sum() \
+			.reset_index() \
+			.sort_values(key,ascending=False)
+		self.utilMatrix.rename({key: 'amount'}, inplace=True)
 
 	#####################
 	# predict
@@ -33,11 +35,11 @@ class MLPopularity(MLBase):
 	def predict(self):
 		limit = max(5, self.utilMatrix.shape[0])
 		print(limit)
-		data = self.utilMatrix.head(5).reset_index()
+		data = self.utilMatrix.head(5)
 
 		response = list()
-		for index, row in data.iterrows():
-			response.append({'itemCd':row['sku'], 'amount':row['amount']})
+		for sku, amt in data.values:
+			response.append({'itemCd':sku, 'amount':amt})
 		return response
 
 	#####################

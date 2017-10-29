@@ -26,7 +26,7 @@ orderRouter.post('/', async function(req, res, next) {
       console.log(itemList[0])
       console.log(itemList[1])
       // if item is not already exist, creat new item obj
-      let item = await Item.findOne({ sku: itemList[i], storeId:req.body.storeId});
+      let item = await Item.findOne({ sku: itemList[i], store_id:req.body.storeId});
       console.log(item);
       // not found
       if(item == null){
@@ -61,7 +61,7 @@ orderRouter.post('/', async function(req, res, next) {
 orderRouter.get('/', function(req, res, next) {
   let storeId = req.query.key;
 	try {
-		Order.find({storeId:storeId}).exec(function(err, orders) {
+		Order.find({store_id:storeId}).exec(function(err, orders) {
 			if (err) {
         console.log(err)
         res.send(err);

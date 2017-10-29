@@ -22,3 +22,9 @@ class DataSource():
 		cursor = cls.client.openr[collectionName].find({'store_id':ObjectId(storeID)})
 		return pd.DataFrame(list(cursor))
 
+	##
+	@classmethod
+	def getItemNameBySkus(cls, skus, storeID):
+		cursor = cls.client.openr.items.find({'sku':{ "$in": skus}, 'store_id':ObjectId(storeID)})
+		return pd.DataFrame(list(cursor));
+

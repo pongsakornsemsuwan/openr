@@ -16,13 +16,14 @@ class TopBar extends React.Component {
   }
 
   render() {
+    let imageUrl = this.props.email === 'crayon@crayon.com' ? '/user8-128x128.jpg' : '/user1-128x128.jpg'
     console.log(this.props.email)
     return (
       <AppBar style={{ textAlign:'right', alignItems:'center',display:'flex', justifyContent:'center', backgroundColor:'#4C566A', paddingRight:20}}
         titleStyle={{fontSize:24}}
         title={
           <div>
-            <Avatar src="/user8-128x128.jpg" style={{marginTop:10,marginRight:10}}/>
+            <Avatar src={imageUrl} style={{marginTop:10,marginRight:10}}/>
             <span style={{fontSize:20,verticalAlign:'top'}}>Welcome, {this.props.email}</span>
           </div>}
         iconElementRight = {
@@ -33,8 +34,6 @@ class TopBar extends React.Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Help" />
           <MenuItem primaryText="Sign out" onClick={this.props.logout} />
         </IconMenu>
         }

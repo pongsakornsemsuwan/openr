@@ -29,8 +29,9 @@ class CollaborativeDetailContainer extends React.Component{
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn></TableHeaderColumn>
-            <TableHeaderColumn>Item Code</TableHeaderColumn>
+            <TableHeaderColumn style={{width:80}}></TableHeaderColumn>
+            <TableHeaderColumn style={{width:200}}>Item Code</TableHeaderColumn>
+            <TableHeaderColumn>Item Name</TableHeaderColumn>
             <TableHeaderColumn>Correlation</TableHeaderColumn>
           </TableRow>
         </TableHeader>
@@ -38,8 +39,9 @@ class CollaborativeDetailContainer extends React.Component{
           {this.props.collaboratedItems.map((item, index)=>{
             return (
               <TableRow key={index}>
-                <TableRowColumn>{index+1}</TableRowColumn>
-                <TableRowColumn>{item.itemCd}</TableRowColumn>
+                <TableRowColumn style={{width:80}}>{index+1}</TableRowColumn>
+                <TableRowColumn style={{width:200}}>{item.itemCd}</TableRowColumn>
+                <TableRowColumn>{item.name}</TableRowColumn>
                 <TableRowColumn>{item.corr}</TableRowColumn>
               </TableRow>    
             )
@@ -56,9 +58,9 @@ class CollaborativeDetailContainer extends React.Component{
     return (
       <div style={{padding:50}}>
         <div style={{marginBottom:50}}>
-          <h2>Association Based Recommendation</h2>
-          <p>Items customer bought together with <span style={{fontWeight:'bold',fontSize:20}}>{this.props.match.params.sku}</span></p>
-          <div>You can access this list by calling <span className="code">GET http://openr.net/api/collaborative/item/{this.props.match.params.sku}/?key={this.props.storeId}</span></div>
+          <h2>Collaborative Based Recommendation</h2>
+          <p>Items that are relevance with <span style={{fontWeight:'bold',fontSize:20}}>{this.props.match.params.sku}</span></p>
+          <div>You can retrieve this list by calling <span className="code">GET http://openr.net/api/collaborative/item/{this.props.match.params.sku}/?key={this.props.storeId}</span></div>
           {this.props.isLoading ? 
             <div style={{textAlign:'center',marginTop:100}}><CircularProgress size={80} thickness={5} /></div> :
               this.props.collaboratedItems.length > 0 ? 

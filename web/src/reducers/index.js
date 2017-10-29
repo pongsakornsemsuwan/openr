@@ -7,7 +7,7 @@ import PopularReducer from './PopularReducer'
 import AssociationReducer from './AssociationReducer'
 import CollaborativeReducer from './CollaborativeReducer'
 
-export default combineReducers({
+const appReducer = combineReducers({
   SessionReducer,
   InventoryReducer,
   PopularReducer,
@@ -15,3 +15,12 @@ export default combineReducers({
   CollaborativeReducer,
   form: formReducer  
 })
+
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT_SUCCESSFUL') {
+    state = undefined
+  }
+  return appReducer(state, action)
+}
+
+export default rootReducer;

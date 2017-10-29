@@ -1,37 +1,47 @@
 import axios from 'axios';
 
-export async function fetchItems(dispatch, key) {
-  const result = await axios.get(`http://localhost:3001/api/items?key=${key}`);
-  console.log('!!!');
-  console.log(result);
+export function fetchItems(dispatch, key) {
+
   dispatch({
-    type: 'FETCH_COLLABORATIVE_ITEMS_SUCCESSFUL', 
+    type: 'FETCH_COLLABORATIVE_LOADING', 
     payload: {
-      items: result.data
+      isLoading: true
     }
+  })
+
+  axios.get(`http://localhost:3001/api/items?key=${key}`)
+    .then(function(response){
+      dispatch({
+      type: 'FETCH_COLLABORATIVE_ITEMS_SUCCESSFUL', 
+      payload: {
+        items: response.data,
+        isLoading: false
+      }
+    })
   })
 }
 
-export async function fetchCollaboratedItems(dispatch, sku, key) {
+export function fetchCollaboratedItems(dispatch, sku, key) {
   dispatch({
     type: 'FETCH_COLLABORATED_LOADING', 
     payload: {
       isLoading: true
     }
   })
-  const result = await axios.get(`http://localhost:8000/api/collaborative/item/${sku}/?key=${key}`);
-  console.log('!!!');
-  console.log(result);
-  dispatch({
-    type: 'FETCH_COLLABORATED_ITEMS_SUCCESSFUL', 
-    payload: {
-      collaboratedItems: result.data,
-      isLoading: false,
+  axios.get(`http://localhost:8000/api/collaborative/item/${sku}/?key=${key}`).then(
+    function(response){
+      dispatch({
+        type: 'FETCH_COLLABORATED_ITEMS_SUCCESSFUL', 
+        payload: {
+          collaboratedItems: response.data,
+          isLoading: false,
+        }
+      })
     }
-  })
+  )
 }
 
-export async function filterCollaborativeItems(dispatch, text){
+export function filterCollaborativeItems(dispatch, text){
   dispatch({
     type: 'FILTER_COLLABORATIVE_ITEMS', 
     payload: {

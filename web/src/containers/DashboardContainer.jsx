@@ -32,10 +32,12 @@ const DashboardContainer = () => {
               <Route path="/dashboard/order" component={CustomerContainer} />
               <Route exact path="/dashboard/analytics" component={AnalyticsContainer} />
               <Route path="/dashboard/analytics/popularity" component={PopularityContainer} />
-              <Route exact path="/dashboard/analytics/correlation" component={AssociationContainer} />
-              <Route exact path="/dashboard/analytics/correlation/:sku" component={AssociationDetailContainer} />
-              <Route exact path="/dashboard/analytics/collaborative" component={CollaborativeContainer} />
-              <Route exact path="/dashboard/analytics/collaborative/:sku" component={CollaborativeDetailContainer} />
+              <Route path="/dashboard/analytics/correlation/:sku" component={AssociationDetailContainer} />
+              <Route path="/dashboard/analytics/correlation" component={AssociationContainer} />
+              
+              <Route path="/dashboard/analytics/collaborative/:sku" component={CollaborativeDetailContainer} />
+              <Route path="/dashboard/analytics/collaborative" component={CollaborativeContainer} />
+              
             </Switch>
           </div>
         </div>

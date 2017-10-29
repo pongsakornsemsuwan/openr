@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import PopularityPeriod from '../components/PopularityPeriod/PopularityPeriod';
 import { fetchItems, filterCollaborativeItems } from '../actions/CollaborativeAction'
 import {
   Table,
@@ -15,6 +14,7 @@ import { Link, withRouter } from 'react-router-dom';
 import {grey500} from 'material-ui/styles/colors'
 import TextField from 'material-ui/TextField'
 import FontIcon from 'material-ui/FontIcon'
+import CircularProgress from 'material-ui/CircularProgress';
 
 class CollaborativeContainer extends React.Component{
   constructor(props){
@@ -30,15 +30,18 @@ class CollaborativeContainer extends React.Component{
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn>Item Code</TableHeaderColumn>
-            <TableHeaderColumn>Amount</TableHeaderColumn>
+            <TableHeaderColumn style={{width:80}}></TableHeaderColumn>
+            <TableHeaderColumn style={{width:150}}>Item Code</TableHeaderColumn>
+            <TableHeaderColumn>Item Name</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
           {this.props.items.map((item, index)=>{
             return (
               <TableRow key={index}>
-                <TableRowColumn><Link to={this.props.match.url + '/' + item.sku}>{item.sku}</Link></TableRowColumn>
+                <TableRowColumn style={{width:80}}>{index+1}</TableRowColumn>
+                <TableRowColumn style={{width:150}}><Link to={this.props.match.url + '/' + item.sku}>{item.sku}</Link></TableRowColumn>
+                <TableRowColumn>{item.name}</TableRowColumn>
               </TableRow>    
             )
           })}
@@ -57,8 +60,8 @@ class CollaborativeContainer extends React.Component{
     return (
       <div style={{padding:50}}>
         <div style={{marginBottom:50}}>
-          <h2>Collborative Based Recommendation</h2>
-          <p>Recommendation for items that usually bought together</p>
+          <h2>Collaborative Based Recommendation</h2>
+          <p>Recommendation for items that are relevance</p>
           <div style={{ marginRight:20}}>
             <FontIcon className='material-icons searchIcon' style={{position:'relative',top:8}} color={grey500}>search</FontIcon>
             <TextField hintText='Search' id='searchbox' fullWidth={false} name='searchbox'
@@ -66,7 +69,10 @@ class CollaborativeContainer extends React.Component{
           </div>  
         </div>
         <div>
-          {this.renderItemList()}
+          {this.props.items.length == 0 && this.props.isLoading ? 
+            <div style={{textAlign:'center',marginTop:100}}><CircularProgress size={80} thickness={5} /></div> 
+            : this.renderItemList()
+          }
         </div>
       </div>
     )
@@ -76,6 +82,7 @@ class CollaborativeContainer extends React.Component{
 function mapStateToProps(state, ownProps){
   return {
     items: state.CollaborativeReducer.filteredItems,
+    isLoading: state.CollaborativeReducer.isLoading,
     storeId: state.SessionReducer.key
   }
 }

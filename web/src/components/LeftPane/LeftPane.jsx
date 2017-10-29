@@ -17,7 +17,7 @@ import Subheader from 'material-ui/Subheader';
 const LeftPane = ({open, match}) => {
   return (
     <Drawer open={open} zDepth={1} containerStyle={{paddingTop:20}}>
-      <img src="/logo.png" style={{marginLeft:50, width:80}}/>
+      <img src="/logo.png" style={{marginLeft:80, width:80}}/>
       {/* <Subheader>Inventory</Subheader> */}
       <div style={{marginTop:40}}>
         <Link to={match.url + '/inventory'} style={{textDecoration:'none'}}>
@@ -25,9 +25,9 @@ const LeftPane = ({open, match}) => {
         </Link>
         <Divider/>
         {/* <Subheader>Customer</Subheader> */}
-        <Link to={match.url + '/customer'} style={{textDecoration:'none'}}>
+        {/* <Link to={match.url + '/customer'} style={{textDecoration:'none'}}>
           <MenuItem leftIcon={<FontIcon className="material-icons">face</FontIcon>}>Customer</MenuItem>
-        </Link>
+        </Link> */}
         <Divider/>
         {/* <Subheader>Order</Subheader> */}
         <Link to={match.url + '/order'} style={{textDecoration:'none'}}>

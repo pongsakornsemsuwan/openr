@@ -58,7 +58,7 @@ class AssociationDetailContainer extends React.Component{
         <div style={{marginBottom:50}}>
           <h2>Association Based Recommendation</h2>
           <p>Items customer bought together with <span style={{fontWeight:'bold',fontSize:20}}>{this.props.match.params.sku}</span></p>
-          <div>You can access this list by calling <span className="code">GET http://openr.net/api/association/item/{this.props.match.params.sku}/?key={this.props.storeId}</span></div>
+          <div>You can retrieve this list by calling <span className="code">GET http://openr.net/api/association/item/{this.props.match.params.sku}/?key={this.props.storeId}</span></div>
           {this.props.isLoading ? 
             <div style={{textAlign:'center',marginTop:100}}><CircularProgress size={80} thickness={5} /></div> :
               this.props.associatedItems.length > 0 ? 

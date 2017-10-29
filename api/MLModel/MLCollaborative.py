@@ -33,16 +33,28 @@ class MLCollaborative(MLBase):
 	def predict(self, itemID):
 		response = list()
 
+		limit = 5
+	
+		category_code = itemID[5:7]
 		predictItem = self.corrDF[itemID] \
 			.sort_values(ascending=False) \
-			.drop(itemID)
+			.drop(itemID) \
+			.reset_index() \
+			.rename(columns={'index':'sku'})
+			# .head(limit) \
+			
+		
+		predictItem_filter = predictItem[predictItem['sku'].str[5:7] == category_code];
+		predictItem_filter = predictItem_filter.head(limit);
+
+		nameDF = DataSource.getItemNameBySkus(list(predictItem_filter['sku']), self.storeID)
+
+		predictItem_filter = predictItem_filter.merge(nameDF[['name', 'sku']], on='sku')
 
 		response = list()
-		limit = 5
-		for index, row in zip(predictItem.index, predictItem.values):
-			response.append({'itemCd':index, 'corr':row})
-			if len(response) == limit:
-				break
+		
+		for sku, corr, name in predictItem_filter[['sku', itemID, 'name']].values:
+			response.append({'itemCd': sku, 'corr': corr, 'name': name})
 
 		return response
 

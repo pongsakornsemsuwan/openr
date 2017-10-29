@@ -8,7 +8,7 @@ var ItemSchema = new Schema(
     sku: {
       type: String,
     },
-    storeId: {
+    store_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Store'
     }

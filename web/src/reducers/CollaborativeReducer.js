@@ -12,6 +12,7 @@ export default function reducer(state = {
         return Object.assign({}, state, {
            items: action.payload.items,
            filteredItems: action.payload.items,
+           isLoading: action.payload.isLoading,
         })
       }
     case 'FETCH_COLLABORATED_ITEMS_SUCCESSFUL':
@@ -21,7 +22,7 @@ export default function reducer(state = {
           isLoading: action.payload.isLoading,
         })
       }
-    case 'FETCH_COLLABORATED_LOADING':
+    case 'FETCH_COLLABORATIVE_LOADING':
     {
       return Object.assign({}, state, {
         isLoading: action.payload.isLoading,

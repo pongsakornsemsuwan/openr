@@ -28,7 +28,7 @@ class PopularityList extends React.Component {
             return (
               <TableRow key={index}>
                 <TableRowColumn>{index+1}</TableRowColumn>
-                <TableRowColumn>{item.sku}</TableRowColumn>
+                <TableRowColumn>{item.itemCd}</TableRowColumn>
                 <TableRowColumn>{item.amount}</TableRowColumn>
               </TableRow>    
             )

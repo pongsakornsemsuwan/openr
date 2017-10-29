@@ -26,7 +26,7 @@ class PopularityContainer extends React.Component {
   }
   
   componentDidMount(){
-    fetchPopular(this.props.dispatch, 7, this.props.storeId)
+    fetchPopular(this.props.dispatch, this.state.value, this.props.storeId)
   }
   
   async handleChange(event, selectedIndex, menuItem){
@@ -42,6 +42,7 @@ class PopularityContainer extends React.Component {
         <div style={{marginBottom:50}}>
           <h2>Popularity Based Recommendation</h2>
           <p>Recommendation based on what sell best in your store</p>
+          <div>You can retrieve this list by calling <span className="code">GET http://openr.net/api/popular/?p={this.state.value}&key={this.props.storeId}</span></div>
         </div>
         <div>
           <SelectField

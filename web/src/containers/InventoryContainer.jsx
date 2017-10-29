@@ -22,9 +22,11 @@ class InventoryContainer extends React.Component {
 
   renderIntenvory(){
     console.log(this.props.items);
-    return this.props.items.map( item => {
-     return (<TableRow>
-        <TableRowColumn>{item.sku}</TableRowColumn>
+    return this.props.items.map( (item, index) => {
+     return (<TableRow key={index}>
+        <TableRowColumn style={{width:80}}>{index+1}</TableRowColumn>
+        <TableRowColumn style={{width:200}}>{item.sku}</TableRowColumn>
+        <TableRowColumn>{item.name}</TableRowColumn>
       </TableRow>)
     })
   }
@@ -34,7 +36,9 @@ class InventoryContainer extends React.Component {
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn>Item Code</TableHeaderColumn>
+            <TableHeaderColumn style={{width:80}}></TableHeaderColumn>
+            <TableHeaderColumn style={{width:200}}>Item Code</TableHeaderColumn>
+            <TableHeaderColumn>Item Name</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>

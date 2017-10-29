@@ -29,7 +29,9 @@ itemRouter.get('/', async function(req, res, next) {
   }
   console.log(storeId);
 	try {
-		Item.find({storeId:storeId}).exec(function(err, items) {
+    console.log(new Date())
+		Item.find({store_id:storeId}).limit(1000).exec(function(err, items) {
+      console.log(new Date())
 			if (err) {
         console.log(err)
         res.send(err);
